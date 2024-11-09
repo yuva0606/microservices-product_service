@@ -6,6 +6,7 @@ import com.yuva.product.dto.StockRequest;
 import com.yuva.product.feignclient.InventoryClient;
 import com.yuva.product.model.Product;
 import com.yuva.product.repository.ProductRepository;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -124,17 +125,17 @@ public class ProductService {
                 product.getDescription(),product.getCategory(),product.getPrice(),quantity);
     }
 
-    public List<ProductWithQuantity> createProductWithQuantity(ProductWithQuantity productWithQuantity) {
+    public List<ProductWithQuantity> createProductWithQuantity(ProductWithQuantity productWithQuantity, HttpServletRequest request) {
         Product product = productRepository.save(toProduct(productWithQuantity));
-        Integer quantity = inventoryClient.addStock(new StockRequest(product.getId(), productWithQuantity.quantity()));
+        Integer quantity = (Integer) inventoryClient.addStock(new StockRequest(product.getId(), productWithQuantity.quantity()), request).getBody();
         return List.of(toProductWithQuantity(product, quantity));
     }
 
-    public List<ProductWithQuantity> createProductsBulkWithQuantity(List<ProductWithQuantity> productWithQuantityList) {
+    public List<ProductWithQuantity> createProductsBulkWithQuantity(List<ProductWithQuantity> productWithQuantityList, HttpServletRequest request) {
         List<ProductWithQuantity> savedProductWithQuantityList = new ArrayList<>();
         for(ProductWithQuantity productWithQuantity : productWithQuantityList){
             Product product = productRepository.save(toProduct(productWithQuantity));
-            Integer quantity = inventoryClient.addStock(new StockRequest(product.getId(), productWithQuantity.quantity()));
+            Integer quantity = (Integer) inventoryClient.addStock(new StockRequest(product.getId(), productWithQuantity.quantity()), request).getBody();
             savedProductWithQuantityList.add(toProductWithQuantity(product, quantity));
         }
         return savedProductWithQuantityList;
