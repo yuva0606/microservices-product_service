@@ -1,0 +1,51 @@
+[
+  {
+    "name": "Apple iPhone 15",
+    "description": "Latest model of Apple iPhone with improved cameras and performance.",
+    "category": "Electronics",
+    "price": 999.99,
+    "quantity": 44
+  },
+  {
+    "name": "Samsung Galaxy S23",
+    "description": "Samsung's flagship smartphone with a stunning display and powerful features.",
+    "category": "Electronics",
+    "price": 849.99,
+    "quantity": 40
+  },
+  {
+    "name": "Sony Noise Cancelling Headphones",
+    "description": "High-quality noise-cancelling headphones for immersive audio experience.",
+    "category": "Accessories",
+    "price": 349.99,
+    "quantity": 13
+  },
+  {
+    "name": "Dell XPS 13",
+    "description": "Ultra-lightweight laptop with a powerful Intel processor and stunning display.",
+    "category": "Computers",
+    "price": 1199.99,
+    "quantity": 8
+  },
+  {
+    "name": "Nike Air Zoom Pegasus 40",
+    "description": "Comfortable and stylish running shoes with great cushioning.",
+    "category": "Footwear",
+    "price": 129.99,
+    "quantity": 24
+  },
+  {
+    "name": "Apple Watch Series 9",
+    "description": "Smartwatch with health tracking features, including ECG and blood oxygen.",
+    "category": "Wearables",
+    "price": 399.99,
+    "quantity": 19
+  },
+  {
+    "name": "LG 65-inch OLED TV",
+    "description": "OLED TV with stunning picture quality and rich colors for an immersive viewing experience.",
+    "category": "Electronics",
+    "price": 2299.99,
+    "quantity": 6
+  }
+]

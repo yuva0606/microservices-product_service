@@ -139,4 +139,8 @@ public class ProductService {
         }
         return savedProductWithQuantityList;
     }
+
+    public void deleteAllProducts() {
+        productRepository.deleteAll();
+    }
 }
