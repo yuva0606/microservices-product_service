@@ -125,17 +125,17 @@ public class ProductService {
                 product.getDescription(),product.getCategory(),product.getPrice(),quantity);
     }
 
-    public List<ProductWithQuantity> createProductWithQuantity(ProductWithQuantity productWithQuantity, HttpServletRequest request) {
+    public List<ProductWithQuantity> createProductWithQuantity(ProductWithQuantity productWithQuantity) {
         Product product = productRepository.save(toProduct(productWithQuantity));
-        Integer quantity = inventoryClient.addStock(new StockRequest(product.getId(), productWithQuantity.quantity()), request);
+        Integer quantity = inventoryClient.addStock(new StockRequest(product.getId(), productWithQuantity.quantity()));
         return List.of(toProductWithQuantity(product, quantity));
     }
 
-    public List<ProductWithQuantity> createProductsBulkWithQuantity(List<ProductWithQuantity> productWithQuantityList, HttpServletRequest request) {
+    public List<ProductWithQuantity> createProductsBulkWithQuantity(List<ProductWithQuantity> productWithQuantityList) {
         List<ProductWithQuantity> savedProductWithQuantityList = new ArrayList<>();
         for(ProductWithQuantity productWithQuantity : productWithQuantityList){
             Product product = productRepository.save(toProduct(productWithQuantity));
-            Integer quantity = inventoryClient.addStock(new StockRequest(product.getId(), productWithQuantity.quantity()), request);
+            Integer quantity = inventoryClient.addStock(new StockRequest(product.getId(), productWithQuantity.quantity()));
             savedProductWithQuantityList.add(toProductWithQuantity(product, quantity));
         }
         return savedProductWithQuantityList;

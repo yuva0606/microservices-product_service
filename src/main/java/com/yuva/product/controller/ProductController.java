@@ -30,7 +30,7 @@ public class ProductController {
         if (!"ADMIN".equals(request.getHeader("Authenticated-Role"))) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("It seems, You don't have access to go ahead");
         }
-        return ResponseEntity.status(HttpStatus.CREATED).body(productService.createProductWithQuantity(productWithQuantity,request));
+        return ResponseEntity.status(HttpStatus.CREATED).body(productService.createProductWithQuantity(productWithQuantity));
     }
 
     @PostMapping("/bulk/quantity")
@@ -38,7 +38,7 @@ public class ProductController {
         if (!"ADMIN".equals(request.getHeader("Authenticated-Role"))) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("It seems, You don't have access to go ahead");
     }
-        return ResponseEntity.status(HttpStatus.CREATED).body(productService.createProductsBulkWithQuantity(productWithQuantityList,request));
+        return ResponseEntity.status(HttpStatus.CREATED).body(productService.createProductsBulkWithQuantity(productWithQuantityList));
     }
     @PostMapping("/bulk")
     public ResponseEntity<?> createProducts(@RequestBody List<ProductDto> productDtoList, HttpServletRequest request) {
