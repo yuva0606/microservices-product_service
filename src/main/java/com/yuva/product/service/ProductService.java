@@ -127,7 +127,7 @@ public class ProductService {
 
     public List<ProductWithQuantity> createProductWithQuantity(ProductWithQuantity productWithQuantity, HttpServletRequest request) {
         Product product = productRepository.save(toProduct(productWithQuantity));
-        Integer quantity = (Integer) inventoryClient.addStock(new StockRequest(product.getId(), productWithQuantity.quantity()), request).getBody();
+        Integer quantity = inventoryClient.addStock(new StockRequest(product.getId(), productWithQuantity.quantity()), request);
         return List.of(toProductWithQuantity(product, quantity));
     }
 
@@ -135,7 +135,7 @@ public class ProductService {
         List<ProductWithQuantity> savedProductWithQuantityList = new ArrayList<>();
         for(ProductWithQuantity productWithQuantity : productWithQuantityList){
             Product product = productRepository.save(toProduct(productWithQuantity));
-            Integer quantity = (Integer) inventoryClient.addStock(new StockRequest(product.getId(), productWithQuantity.quantity()), request).getBody();
+            Integer quantity = inventoryClient.addStock(new StockRequest(product.getId(), productWithQuantity.quantity()), request);
             savedProductWithQuantityList.add(toProductWithQuantity(product, quantity));
         }
         return savedProductWithQuantityList;
