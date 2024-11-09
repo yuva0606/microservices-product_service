@@ -21,9 +21,9 @@ spec:
             - containerPort: 9200
           env:
             - name: discovery.type
-              value: "single-node"  # Sets it to single-node mode
+              value: "single-node"
             - name: ES_JAVA_OPTS
-              value: "-Xms512m -Xmx512m"  # Adjust Java heap size according to your needs
+              value: "-Xms512m -Xmx512m"
           resources:
             requests:
               memory: "1Gi"
@@ -44,6 +44,6 @@ spec:
     app: elasticsearch
   ports:
     - protocol: TCP
-      port: 9200       # External port to expose
-      targetPort: 9200 # Internal Elasticsearch port
-  type: ClusterIP      # Keeps it accessible only within the cluster
+      port: 9200
+      targetPort: 9200
+  type: LoadBalancer
