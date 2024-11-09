@@ -4,6 +4,5 @@ spring.elasticsearch.uris=http://localhost:9200
 
 server.port=8082
 
-inventory.service.url=http://localhost:8084
 
 
